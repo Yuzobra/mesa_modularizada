@@ -84,7 +84,7 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
     Ligar eletroimã
     delay para ligar
     Levar peça até posiçãoFinal:
-      if(posicaoFinal[0] > posicaoInicial[0]){
+      if(posicaoInicial[0] < posicaoFinal[0]){
         MotorX.step(meiaCasa, FORWARD, DOUBLE);
 
         if(posicaoFinal[1] > posicaoInicial[1]){
@@ -102,7 +102,7 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
         MotorY.step(meiaCasa, FORWARD, DOUBLE);
       }
 
-      else if(posicaoFinal[0] < posicaoInicial[0]){
+      else if(posicaoInicial[0] > posicaoFinal[0]){
 
       }
 
