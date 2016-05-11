@@ -17,10 +17,11 @@ int umaCasa = 266; // Passos para andar uma casa
 int meiaCasa = 133; // Passos para andar meia casa
 int numeroDeJogadas = 0;
 int posCemiterioY[] = {meiaCasa, meiaCasa + umaCasa, meiaCasa + 2 * umaCasa, meiaCasa + 3 * umaCasa, meiaCasa + 4 * umaCasa, meiaCasa + 5 * umaCasa, meiaCasa + 6 * umaCasa, meiaCasa + 7 * umaCasa};
-int posCemiterioX[] = {-meiaCasa, meiaCasa + 8 * umaCasa};
+int posCemiterioX[] = {-meiaCasa, meiaCasa + 8 * umaCasa, -meiaCasa -umaCasa, meiaCasa + 9 * umaCasa};
 int posTabuleiro[] = {meiaCasa, meiaCasa + umaCasa, meiaCasa + 2 * umaCasa, meiaCasa + 3 * umaCasa, meiaCasa + 4 * umaCasa, meiaCasa + 5 * umaCasa, meiaCasa + 6 * umaCasa, meiaCasa + 7 * umaCasa};
 int cemiterioJ1 = 0;
 int cemiterioJ2 = 0;
+int eletroIma = 9;
 
 void setup(){
     Serial.begin(9600);
@@ -87,7 +88,9 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
     MotorY.step(posTabuleiro[posicaoInicial[1] - 1], FORWARD, DOUBLE);
     delay(50);
     Ligar eletroimã
+    digitalWrite(eletroIma, HIGH);
     delay para ligar
+    delay(500);
     Levar peça até posiçãoFinal
     if(posicaoFinal[0] > posicaoInicial[0]){
 
@@ -109,6 +112,7 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
         MotorX.step((posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posTabuleiro[posicaoInicial[hashMap.getValueOf(posicaoInicial[0]) - meiaCasa), FORWARD, DOUBLE);
         delay(50);
         MotorY.step(meiaCasa, BACKWARD, DOUBLE);
+        delay(50);
       }
       else{
         MotorY.step(meiaCasa, FORWARD, DOUBLE);
@@ -172,6 +176,8 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
      }
    }
     Desligar eletroimã
+    digitalWrite(eletroIma, LOW);
+    delay(500);
     Delay devido ao efeito do campo
     Retornar eletroimã para a origem (0, 0)
     MotorX.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]), BACKWARD, DOUBLE);
@@ -192,7 +198,9 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
      MotorY.step(posTabuleiro[posicaoFinal[1] - 1], FORWARD, DOUBLE);
      delay(50);
     Ligar Eletroimã
+    digitalWite(eletroIma, HIGH);
     delay para ligar
+    delay(500);
     Conferir de qual jogador é a vez
     Conferir o numero de peças que ja matou
     Levar a peça morta do adversário até o cemitério do jogador atual, na posição certa
@@ -202,7 +210,11 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
       {
         MotorY.step(meiaCasa, FORWARD, DOUBLE);
         delay(50);
-        MotorX.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa, FORWARD, DOUBLE);
+        if(cemiterioJ2 > 8){
+          MotorX.step(posCemiterioX[3] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa, FORWARD, DOUBLE);
+        } else {
+          MotorX.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa, FORWARD, DOUBLE);
+        }
         delay(50);
         MotorY.step(posCemiterioY[cemiterioJ2] - posicaoFinal[1], FORWARD, DOUBLE);
         delay(50);
@@ -213,7 +225,11 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
       {
         MotorY.step(meiaCasa, BACKWARD, DOUBLE);
         delay(50);
-        MotorX.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa, FORWARD, DOUBLE);
+        if(cemiterioJ2 > 8){
+          MotorX.step(posCemiterioX[3] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa, FORWARD, DOUBLE);
+        } else {
+          MotorX.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa, FORWARD, DOUBLE);
+        }
         delay(50);
         MotorY.step(posicaoFinal[1] - posCemiterioY[cemiterioJ2] - meiaCasa, BACKWARD, DOUBLE);
         delay(50);
@@ -224,12 +240,29 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
       {
         MotorY.step(meiaCasa, FORWARD, DOUBLE);
         delay(50);
-        MotorX.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]), FORWARD, DOUBLE);
+        if(cemiterioJ2 > 8){
+          MotorX.step(posCemiterioX[3] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]), FORWARD, DOUBLE);
+        } else {
+          MotorX.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]), FORWARD, DOUBLE);
+        }
         delay(50);
         MotorY.step(meiaCasa, BACKWARD, DOUBLE);
         delay(50);
       }
       cemiterioJ2++;
+
+      Desligar Eletroimã
+      digitalWrite(eletroIma, LOW);
+      delay(500);
+      Voltar para a origem (0, 0)
+      MotorY.step(cemiterioJ2, BACKWARD, DOUBLE);
+      delay(50);
+      if(cemiterioJ2 > 8){
+        MotorX.step(posCemiterioX[3], BACKWARD, DOUBLE);
+      } else {
+        MotorX.step(posCemiterioX[1], BACKWARD, DOUBLE);
+      }
+      delay(50);
     }
     else if (numeroDeJogadas % 2 == 0)
     {
@@ -237,7 +270,11 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
       {
         MotorY.step(meiaCasa, FORWARD, DOUBLE);
         delay(50);
-        MotorX.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[0] - meiaCasa, BACKWARD, DOUBLE);
+        if(cemiterioJ1 > 8){
+          MotorX.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[2] - meiaCasa, BACKWARD, DOUBLE);
+        } else {
+           MotorX.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[0] - meiaCasa, BACKWARD, DOUBLE);
+        }
         delay(50);
         MotorY.step(posCemiterioY[cemiterioJ1] - posTabuleiro[posicaoFinal[1] - 1] - meiaCasa, FORWARD, DOUBLE);
         delay(50);
@@ -248,7 +285,11 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
       {
         MotorY.step(meiaCasa, BACKWARD, DOUBLE);
         delay(50);
-        MotorX.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[0] - meiaCasa, BACKWARD, DOUBLE);
+        if (cemiterioJ1 > 8){
+           MotorX.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[2] - meiaCasa, BACKWARD, DOUBLE);
+        } else {
+           MotorX.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[0] - meiaCasa, BACKWARD, DOUBLE);
+        }
         delay(50);
         MotorY.step(posTabuleiro[posicaoFinal[1] - 1] - posCemiterioY[cemiterioJ2] - meiaCasa, BACKWARD, DOUBLE);
         delay(50);
@@ -259,24 +300,31 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
       {
         MotorY.step(meiaCasa, FORWARD, DOUBLE);
         delay(50);
-        MotorX.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[0], FORWARD, DOUBLE);
+        if (cemiterioJ1 > 8){
+           MotorX.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[2] - meiaCasa, BACKWARD, DOUBLE);
+        } else {
+           MotorX.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[0] - meiaCasa, BACKWARD, DOUBLE);
+        }
         delay(50);
         MotorY.step(meiaCasa, BACKWARD, DOUBLE);
         delay(50);
       }
       cemiterioJ1++;
+
+      Desligar Eletroimã
+      digitalWrite(eletroIma, LOW);
+      delay(500);
+      Voltar para a origem (0, 0)
+      MotorY.step(cemiterioJ1, BACKWARD, DOUBLE);
+      delay(50);
+      if(cemiterioJ1 > 8){
+        MotorX.step(posCemiterioX[2], FORWARD, DOUBLE);
+      } else {
+        MotorX.step(posCemiterioX[0], FORWARD, DOUBLE);
+      }
+      delay(50);
     }
 
-    Desligar Eletroimã
-    Voltar para a origem (0, 0)
-    incrementar variável do numero de peças ja mortas do adversário pelo jogador atual
-    Levar o eletroimã até a posicaoInicial
-    Ligar o eletroimã
-    delay para ligar
-    Levar a peça até a posicaoFinal
-    Desligar o Eletroimã
-    delay para desligar
-    Voltar até a origem (0, 0)
-    incrementar a variável de número de jogadas
+    moverPeca(posicaoInicial, posicaoFinal);
     */
 }
