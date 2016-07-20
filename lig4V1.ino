@@ -109,7 +109,7 @@ void jogada(int coluna){
      {
        sr.step(posX[coluna] - posX[(jogadas/2) +1],1, 0);
        delay(50);
-       sr.step(posY[5] - posY[colunasArr[coluna-1]] + meiCasa,0, 1);
+       sr.step(posY[5] - posY[colunasArr[coluna-1]] + meiaCasa,0, 1);
        delay(50); 
        digitalWrite(eletroIma,0);
        delay(1000);
@@ -185,7 +185,7 @@ void jogada(int coluna){
      {
        sr.step(posX[coluna] - posX[((jogadas-29)/2) +1],1, 0);
        delay(50);
-       sr.step(posY[5] - posY[colunasArr[coluna-1]] + meiCasa,0, 1);
+       sr.step(posY[5] - posY[colunasArr[coluna-1]] + meiaCasa,0, 1);
        delay(50); 
        digitalWrite(eletroIma,0);
        delay(1000);
@@ -269,4 +269,5 @@ void jogada(int coluna){
      delay(50);     
      colunasArr[coluna-1]++;  
   }
+  jogadas++;
 }
