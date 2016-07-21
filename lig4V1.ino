@@ -2,7 +2,7 @@
 #include <ShiftRegister74HC595.h>
 #include <Motor595.h>
 
-SoftwareSerial mySerial(10, 11);
+SoftwareSerial mySerial(7, 8);
 
 Motor595 sr (10, 12, 11);
 
