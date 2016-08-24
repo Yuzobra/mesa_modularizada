@@ -2,7 +2,7 @@
 #include <ShiftRegister74HC595.h>
 #include <Motor595.h>
 
-SoftwareSerial mySerial(10, 11);
+SoftwareSerial mySerial(8, 9);
 
 Motor595 sr (10, 12, 11);
 
@@ -149,11 +149,12 @@ void jogada(int coluna){
      {
        sr.step(posX[coluna] - posX[((jogadas-15)/2) +1],1, 0);
        delay(50);
-       sr.step(posY[5] - posY[colunasArr[coluna-1]] + meiCasa,0, 1);
+       sr.step(posY[5] - posY[colunasArr[coluna-1]] + meiaCasa,0, 1);
        delay(50); 
        digitalWrite(eletroIma,0);
        delay(1000);            
     }
+   }
     else //terceira coluna
     {
       sr.step(posYpecas[5],1,1);
@@ -196,7 +197,9 @@ void jogada(int coluna){
      sr.step(posX[coluna - 1], 0, 0);
      delay(50);     
      colunasArr[coluna-1]++;  
+  }
 }
+
   else //Jogador 2
   {
     if (jogadas < 15) //pegar na primeira coluna
