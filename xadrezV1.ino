@@ -3,7 +3,7 @@
 #include <Motor595.h>
 #include <HashMap.h>
 
-SoftwareSerial mySerial(10, 11);
+SoftwareSerial mySerial(8, 9);
 
 Motor595 sr (10,12,11);
 
