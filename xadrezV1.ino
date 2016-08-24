@@ -29,14 +29,14 @@ void setup(){
 
     sr.setSpeed(35);
     
-    hashMap[0]("A",0);
-    hashMap[1]("B",1);
-    hashMap[2]("C",2);
-    hashMap[3]("D",3);
-    hashMap[4]("E",4);
-    hashMap[5]("F",5);
-    hashMap[6]("G",6);
-    hashMap[7]("H",7);
+    hashMap[0]('A',0);
+    hashMap[1]('B',1);
+    hashMap[2]('C',2);
+    hashMap[3]('D',3);
+    hashMap[4]('E',4);
+    hashMap[5]('F',5);
+    hashMap[6]('G',6);
+    hashMap[7]('H',7);
     
     // Serial.println(hashMap.getValueOf("A")) retornaria 0
 }
@@ -78,27 +78,20 @@ void loop(){
     }
 }
 
-void moverPeca(string posicaoInicial, string posicaoFinal){
-    /*
-    Eletroimã esta na origem (0, 0)
-    Levar eletroimã até a posiçãoInicial
+void moverPeca(String posicaoInicial, String posicaoFinal){
     sr.step(posTabuleiro[hashMap.getValueOf(posicaoInicial[0])], 1, 0);
     delay(50);
     sr.step(posTabuleiro[posicaoInicial[1] - 1], 1, 1);
-    delay(50);
-    Ligar eletroimã
+    delay(50);   
     digitalWrite(eletroIma, HIGH);
-    delay para ligar
-    delay(500);
-    Levar peça até posiçãoFinal
+    delay(50);   
     if(posicaoFinal[0] > posicaoInicial[0]){
-    
       if(posicaoFinal[1] > posicaoInicial[1]){
         sr.step(meiaCasa, 1, 0);
         delay(50);
-         sr.step((posTabuleiro[posicaoFinal[1] - 1] - posTabuleiro[posicaoInicial[1] - 1] - meiaCasa), 1, 1);
+         sr.step(posTabuleiro[posicaoFinal[1] - 1] - posTabuleiro[posicaoInicial[1] - 1] - meiaCasa, 1, 1);
          delay(50);
-         sr.step((posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posTabuleiro[hashMap.getValueOf(posicaoInicial[0]) - meiaCasa), 1, 0);
+         sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - posTabuleiro[hashMap.getValueOf(posicaoInicial[0])] - meiaCasa, 1, 0);
          delay(50);
          sr.step(meiaCasa, 1, 1);
          delay(50);
@@ -106,9 +99,9 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
       else if(posicaoFinal[1] < posicaoInicial[1]){
         sr.step(meiaCasa, 1, 0);
         delay(50);
-        sr.step((posTabuleiro[posicaoInicial[1] - 1] - posTabuleiro[posicaoFinal[1] - 1] - meiaCasa), 0, 1);
+        sr.step(posTabuleiro[posicaoInicial[1] - 1] - posTabuleiro[posicaoFinal[1] - 1] - meiaCasa, 0, 1);
         delay(50);
-        sr.step((posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posTabuleiro[posicaoInicial[hashMap.getValueOf(posicaoInicial[0]) - meiaCasa), 1, 0);
+        sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - posTabuleiro[posicaoInicial[hashMap.getValueOf(posicaoInicial[0])]] - meiaCasa, 1, 0);
         delay(50);
         sr.step(meiaCasa, 0, 1);
         delay(50);
@@ -116,7 +109,7 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
       else{
         sr.step(meiaCasa, 1, 1);
         delay(50);
-        sr.step((posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posTabuleiro[hashMap.getValueOf(posicaoInicial[0])), 1, 0);
+        sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - posTabuleiro[hashMap.getValueOf(posicaoInicial[0])], 1, 0);
         delay(50);
         sr.step(meiaCasa, 0, 1);
         delay(50);
@@ -129,9 +122,9 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
       if(posicaoFinal[1] > posicaoInicial[1]){
         sr.step(meiaCasa, 0, 0);
         delay(50);
-        sr.step(posTabuleiro[posicaoFinal[1] - 1] - posTabuleiro[posicaoInicial[1] - 1] - meiaCasa), 1, 1);
+        sr.step(posTabuleiro[posicaoFinal[1] - 1] - posTabuleiro[posicaoInicial[1] - 1] - meiaCasa, 1, 1);
         delay(50);
-        sr.step((posTabuleiro[hashMap.getValueOf(posicaoInicial[0]) - posTabuleiro[posicaoInicial[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa), 0, 0);
+        sr.step(posTabuleiro[hashMap.getValueOf(posicaoInicial[0])] - posTabuleiro[posicaoInicial[hashMap.getValueOf(posicaoFinal[0])]] - meiaCasa, 0, 0);
         delay(50);
         sr.step(meiaCasa, 1, 1);
         delay(50);
@@ -139,9 +132,9 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
       else if(posicaoFinal[1] < posicaoInicial[1]){
        sr.step(meiaCasa, 0, 0);
        delay(50);
-       sr.step((posTabuleiro[posicaoInicial[1] - 1] - posTabuleiro[posicaoFinal[1] - 1] - meiaCasa), 0, 1);
+       sr.step(posTabuleiro[posicaoInicial[1] - 1] - posTabuleiro[posicaoFinal[1] - 1] - meiaCasa, 0, 1);
        delay(50);
-       sr.step(posTabuleiro[hashMap.getValueOf(posicaoInicial[0]) - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa), 0, 0);
+       sr.step(posTabuleiro[hashMap.getValueOf(posicaoInicial[0])] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - meiaCasa, 0, 0);
        delay(50);
        sr.step(meiaCasa, 0, 1);
        delay(50);
@@ -149,7 +142,7 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
       else{
         sr.step(meiaCasa,1, 1);
         delay(50);
-        sr.step((posTabuleiro[hashMap.getValueOf(posicaoInicial[0]) - posTabuleiro[hashMap.getValueOf(posicaoFinal[0])), 0, 0);
+        sr.step(posTabuleiro[hashMap.getValueOf(posicaoInicial[0])] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0])], 0, 0);
         delay(50);
         sr.step(meiaCasa, 0, 1);
         delay(50);
@@ -160,7 +153,7 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
       if(posicaoFinal[1] > posicaoInicial[1]){
         sr.step(meiaCasa, 1, 0);
         delay(50);
-        sr.step(posTabuleiro[posicaoFinal[1] - 1] - posTabuleiro[posicaoInicial[1] - 1]), 1, 1);
+        sr.step(posTabuleiro[posicaoFinal[1] - 1] - posTabuleiro[posicaoInicial[1] - 1], 1, 1);
         delay(50);
         sr.step(meiaCasa, 0, 0);
         delay(50);
@@ -174,35 +167,22 @@ void moverPeca(string posicaoInicial, string posicaoFinal){
        delay(50);
      }
    }
-    Desligar eletroimã
     digitalWrite(eletroIma, LOW);
     delay(500);
-    Delay devido ao efeito do campo
-    Retornar eletroimã para a origem (0, 0)
-    sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]), 0, 0);
+    sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0])], 0, 0);
     delay(50);
     sr.step(posTabuleiro[posicaoFinal[1] - 1], 0, 1);
     delay(50);
-    incrementar a variável de número de jogadas
     numeroDeJogadas++;
-    */
 }
 
-void atacarPeca(string posicaoInicial, string posicaoFinal){
-    /*
-    Eletroimã esta na origem (0, 0)
-    Levar eletroimã até a posicaoFinal
-     sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]), 1, 0);
-     delay(50);
-     sr.step(posTabuleiro[posicaoFinal[1] - 1], 1, 1);
-     delay(50);
-    Ligar Eletroimã
-    digitalWite(eletroIma, HIGH);
-    delay para ligar
+void atacarPeca(String posicaoInicial, String posicaoFinal){
+    sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0])], 1, 0);
+    delay(50);
+    sr.step(posTabuleiro[posicaoFinal[1] - 1], 1, 1);
+    delay(50);
+    digitalWrite(eletroIma, HIGH);
     delay(500);
-    Conferir de qual jogador é a vez 
-    Conferir o numero de peças que ja matou
-    Levar a peça morta do adversário até o cemitério do jogador atual, na posição certa
     if(numeroDeJogadas % 2 == 1)
     {
       if(posCemiterioY[cemiterioJ2] > posTabuleiro[posicaoFinal[1] - 1])
@@ -210,9 +190,9 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
         sr.step(meiaCasa, 1, 1);
         delay(50);
         if(cemiterioJ2 > 8){
-          sr.step(posCemiterioX[3] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa, 1, 0);
+          sr.step(posCemiterioX[3] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - meiaCasa, 1, 0);
         } else {
-          sr.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa, 1, 0);
+          sr.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - meiaCasa, 1, 0);
         }
         delay(50);
         sr.step(posCemiterioY[cemiterioJ2] - posicaoFinal[1], 1, 1);
@@ -220,14 +200,14 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
         sr.step(meiaCasa, 1, 0);
         delay(50);
       }
-      if (posCemiterioY[cemiterioJ2] < posTabuleiro[posicaoFinal[1] - 1]
+      if (posCemiterioY[cemiterioJ2] < posTabuleiro[posicaoFinal[1] - 1])
       {
         sr.step(meiaCasa, 0, 1);
         delay(50);
         if(cemiterioJ2 > 8){
-          sr.step(posCemiterioX[3] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa, 1, 0);
+          sr.step(posCemiterioX[3] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - meiaCasa, 1, 0);
         } else {
-          sr.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - meiaCasa, 1, 0);
+          sr.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - meiaCasa, 1, 0);
         }    
         delay(50);
         sr.step(posicaoFinal[1] - posCemiterioY[cemiterioJ2] - meiaCasa, 0, 1);
@@ -235,24 +215,22 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
         sr.step(meiaCasa, 1, 0);
         delay(50);
       }
-       if (posCemiterioY[cemiterioJ2]  ==  posTabuleiro[posicaoFinal[1] - 1]
+       if (posCemiterioY[cemiterioJ2]  ==  posTabuleiro[posicaoFinal[1] - 1])
       {
         sr.step(meiaCasa, 1, 1);
         delay(50);
         if(cemiterioJ2 > 8){
-          sr.step(posCemiterioX[3] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]), 1, 0);
+          sr.step(posCemiterioX[3] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0])], 1, 0);
         } else {
-          sr.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0]), 1, 0);
+          sr.step(posCemiterioX[1] - posTabuleiro[hashMap.getValueOf(posicaoFinal[0])], 1, 0);
         }
         delay(50);
         sr.step(meiaCasa, 0, 1);
         delay(50);
       }
       cemiterioJ2++;
-      Desligar Eletroimã
       digitalWrite(eletroIma, LOW);    
       delay(500);
-      Voltar para a origem (0, 0)  
       sr.step(cemiterioJ2, 0, 1);
       delay(50);
       if(cemiterioJ2 > 8){
@@ -269,9 +247,9 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
         sr.step(meiaCasa, 1, 1);
         delay(50);
         if(cemiterioJ1 > 8){
-          sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[2] - meiaCasa, 0, 0);
+          sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - posCemiterioX[2] - meiaCasa, 0, 0);
         } else {
-           sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[0] - meiaCasa, 0, 0);
+           sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - posCemiterioX[0] - meiaCasa, 0, 0);
         }
         delay(50);
         sr.step(posCemiterioY[cemiterioJ1] - posTabuleiro[posicaoFinal[1] - 1] - meiaCasa, 1, 1);
@@ -279,39 +257,37 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
         sr.step(meiaCasa, 0, 0);
         delay(50);
       }
-      if (posCemiterioY[cemiterioJ2] < posTabuleiro[posicaoFinal[1] - 1]
+      if (posCemiterioY[cemiterioJ2] < posTabuleiro[posicaoFinal[1] - 1])
       {
         sr.step(meiaCasa, 0, 1);
         delay(50);
         if (cemiterioJ1 > 8){
-           sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[2] - meiaCasa, 0, 0);
+           sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - posCemiterioX[2] - meiaCasa, 0, 0);
         } else {
-           sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[0] - meiaCasa, 0, 0);
+           sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - posCemiterioX[0] - meiaCasa, 0, 0);
         }
         delay(50);
         sr.step(posTabuleiro[posicaoFinal[1] - 1] - posCemiterioY[cemiterioJ2] - meiaCasa, 0, 1);
         delay(50);
-        sr.step(meiaCasa, 0,, 0);
+        sr.step(meiaCasa, 0, 0);
         delay(50);
       }
-       if (posCemiterioY[cemiterioJ2]  ==  posTabuleiro[posicaoFinal[1] - 1]
+       if (posCemiterioY[cemiterioJ2]  ==  posTabuleiro[posicaoFinal[1] - 1])
       {
         sr.step(meiaCasa, 1, 1);
         delay(50);
         if (cemiterioJ1 > 8){
-           sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[2] - meiaCasa, 0, 0);
+           sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - posCemiterioX[2] - meiaCasa, 0, 0);
         } else {
-           sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0]) - posCemiterioX[0] - meiaCasa, 0, 0);
+           sr.step(posTabuleiro[hashMap.getValueOf(posicaoFinal[0])] - posCemiterioX[0] - meiaCasa, 0, 0);
         }
         delay(50);
         sr.step(meiaCasa, 0, 1);
         delay(50);
       }
       cemiterioJ1++;
-      Desligar Eletroimã
       digitalWrite(eletroIma, LOW);
       delay(500);
-      Voltar para a origem (0, 0)
       sr.step(cemiterioJ1, 0, 1);
       delay(50);
       if(cemiterioJ1 > 8){
@@ -323,5 +299,4 @@ void atacarPeca(string posicaoInicial, string posicaoFinal){
     }
     
     moverPeca(posicaoInicial, posicaoFinal);
-    */
 }
