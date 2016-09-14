@@ -22,8 +22,8 @@ int pecas[3] = {meiaCasa, meiaCasa + umaCasa, meiaCasa + 2 * umaCasa};
 int pecasX[4] = {umaCasa * 2,umaCasa, umaCasa * 4,umaCasa * 5};
 int matriz [3][3]= {{0,0,0},{0,0,0},{0,0,0}};
 int posTabuleiro[] = {meiaCasa, meiaCasa + umaCasa, meiaCasa + 2 * umaCasa};
-int proximaX;
-int proximaY;
+int proximaX = -1;
+int proximaY = -1;
 char placeholder[2];
 
 
@@ -169,7 +169,241 @@ void jogadaJogador(int posX, int posY)
 
 void jogadaComputador()
 {
-  //feita a função de checar derrota, falta passos 3-8
+  checarVitoria();
+  if(ProximaX != -1 && ProximaY != -1)
+    {
+      if(numeroDeJogadas < 7)
+          {
+            sr.step(pecasX[2],1,0);
+            delay(50);
+            sr.step(pecas[numeroDeJogadas-2],1,1);
+            delay(50);
+            digitalWrite(eletroima, HIGH);
+            delay(1000);
+            sr.step(meiaCasa,0,1);
+            delay(50);
+            sr.step(pecasX[2]-posTabuleiro[ProximaX]-meiaCasa,0,0);
+            delay(50);
+            if(posTabuleiro[ProximaY] > Pecas[numeroDeJogadas-2])
+            {
+              sr.step(posTabuleiro[ProximaY] - Pecas[numeroDeJogadas-2] + meiaCasa,1,1);
+              delay(50);
+            }
+             else if(posTabuleiro[ProximaY] == Pecas[numeroDeJogadas-2])
+            {
+              sr.step(meiaCasa,1,1);
+              delay(50);
+            }
+            else if(posTabuleiro[ProximaY] < Pecas[numeroDeJogadas-2])
+            {
+              sr.step(Pecas[numeroDeJogadas-2] - posTabuleiro[ProximaY] + meiaCasa,1,1);
+              delay(50);
+            }
+            sr.step(meiaCasa,0,0);
+            delay(50);
+            digitalWrite(eletroima, LOW);
+            delay(1000);
+            sr.step(posTabuleiro[ProximaX],0,0);
+            delay(50);
+            sr.step(posTabuleiro[ProximaY],0,1);
+            delay(50);
+          }
+          if(numeroDeJogadas > 7)
+          {
+            sr.step(pecasX[3],1,0);
+            delay(50);
+            sr.step(pecas[(numeroDeJogadas-8)/2],1,1);
+            delay(50);
+            digitalWrite(eletroima, HIGH);
+            delay(1000);
+            sr.step(meiaCasa,0,1);0
+            delay(50);
+            sr.step(pecasX[3]-posTabuleiro[ProximaX]-meiaCasa,0,0);
+            delay(50);
+            if(posTabuleiro[ProximaY] > Pecas[(numeroDeJogadas-8)/2])
+            {
+              sr.step(posTabuleiro[ProximaY] - Pecas[(numeroDeJogadas-8)/2] + meiaCasa,1,1);
+              delay(50);
+            }
+             else if(posTabuleiro[ProximaY] == Pecas[(numeroDeJogadas-8)/2])
+            {
+              sr.step(meiaCasa,1,1);
+              delay(50);
+            }
+            else if(posTabuleiro[ProximaY] < Pecas[(numeroDeJogadas-8)/2])
+            {
+              sr.step(Pecas[(numeroDeJogadas-8)/2] - posTabuleiro[ProximaY] + meiaCasa,1,1);
+              delay(50);
+            }
+            sr.step(meiaCasa,0,0);
+            delay(50);
+            digitalWrite(eletroima, LOW);
+            delay(1000);
+            sr.step(posTabuleiro[ProximaX],0,0);
+            delay(50);
+            sr.step(posTabuleiro[ProximaY],0,1);
+            delay(50);
+          }
+    }
+    else{
+      checarDerrota();
+        if(ProximaX != -1 && ProximaY != -1)
+        {
+          if(numeroDeJogadas < 7)
+          {
+            sr.step(pecasX[2],1,0);
+            delay(50);
+            sr.step(pecas[numeroDeJogadas-2],1,1);
+            delay(50);
+            digitalWrite(eletroima, HIGH);
+            delay(1000);
+            sr.step(meiaCasa,0,1);
+            delay(50);
+            sr.step(pecasX[2]-posTabuleiro[ProximaX]-meiaCasa,0,0);
+            delay(50);
+            if(posTabuleiro[ProximaY] > Pecas[numeroDeJogadas-2])
+            {
+              sr.step(posTabuleiro[ProximaY] - Pecas[numeroDeJogadas-2] + meiaCasa,1,1);
+              delay(50);
+            }
+             else if(posTabuleiro[ProximaY] == Pecas[numeroDeJogadas-2])
+            {
+              sr.step(meiaCasa,1,1);
+              delay(50);
+            }
+            else if(posTabuleiro[ProximaY] < Pecas[numeroDeJogadas-2])
+            {
+              sr.step(Pecas[numeroDeJogadas-2] - posTabuleiro[ProximaY] + meiaCasa,1,1);
+              delay(50);
+            }
+            sr.step(meiaCasa,0,0);
+            delay(50);
+            digitalWrite(eletroima, LOW);
+            delay(1000);
+            sr.step(posTabuleiro[ProximaX],0,0);
+            delay(50);
+            sr.step(posTabuleiro[ProximaY],0,1);
+            delay(50);
+          }
+          if(numeroDeJogadas > 7)
+          {
+            sr.step(pecasX[3],1,0);
+            delay(50);
+            sr.step(pecas[(numeroDeJogadas-8)/2],1,1);
+            delay(50);
+            digitalWrite(eletroima, HIGH);
+            delay(1000);
+            sr.step(meiaCasa,0,1);0
+            delay(50);
+            sr.step(pecasX[3]-posTabuleiro[ProximaX]-meiaCasa,0,0);
+            delay(50);
+            if(posTabuleiro[ProximaY] > Pecas[(numeroDeJogadas-8)/2])
+            {
+              sr.step(posTabuleiro[ProximaY] - Pecas[(numeroDeJogadas-8)/2] + meiaCasa,1,1);
+              delay(50);
+            }
+             else if(posTabuleiro[ProximaY] == Pecas[(numeroDeJogadas-8)/2])
+            {
+              sr.step(meiaCasa,1,1);
+              delay(50);
+            }
+            else if(posTabuleiro[ProximaY] < Pecas[(numeroDeJogadas-8)/2])
+            {
+              sr.step(Pecas[(numeroDeJogadas-8)/2] - posTabuleiro[ProximaY] + meiaCasa,1,1);
+              delay(50);
+            }
+            sr.step(meiaCasa,0,0);
+            delay(50);
+            digitalWrite(eletroima, LOW);
+            delay(1000);
+            sr.step(posTabuleiro[ProximaX],0,0);
+            delay(50);
+            sr.step(posTabuleiro[ProximaY],0,1);
+            delay(50);
+          }
+        }
+      else
+        {
+          blockFork();
+          if(numeroDeJogadas < 7)
+          {
+            sr.step(pecasX[2],1,0);
+            delay(50);
+            sr.step(pecas[numeroDeJogadas-2],1,1);
+            delay(50);
+            digitalWrite(eletroima, HIGH);
+            delay(1000);
+            sr.step(meiaCasa,0,1);
+            delay(50);
+            sr.step(pecasX[2]-posTabuleiro[ProximaX]-meiaCasa,0,0);
+            delay(50);
+            if(posTabuleiro[ProximaY] > Pecas[numeroDeJogadas-2])
+            {
+              sr.step(posTabuleiro[ProximaY] - Pecas[numeroDeJogadas-2] + meiaCasa,1,1);
+              delay(50);
+            }
+             else if(posTabuleiro[ProximaY] == Pecas[numeroDeJogadas-2])
+            {
+              sr.step(meiaCasa,1,1);
+              delay(50);
+            }
+            else if(posTabuleiro[ProximaY] < Pecas[numeroDeJogadas-2])
+            {
+              sr.step(Pecas[numeroDeJogadas-2] - posTabuleiro[ProximaY] + meiaCasa,1,1);
+              delay(50);
+            }
+            sr.step(meiaCasa,0,0);
+            delay(50);
+            digitalWrite(eletroima, LOW);
+            delay(1000);
+            sr.step(posTabuleiro[ProximaX],0,0);
+            delay(50);
+            sr.step(posTabuleiro[ProximaY],0,1);
+            delay(50);
+          }
+          if(numeroDeJogadas > 7)
+          {
+            sr.step(pecasX[3],1,0);
+            delay(50);
+            sr.step(pecas[(numeroDeJogadas-8)/2],1,1);
+            delay(50);
+            digitalWrite(eletroima, HIGH);
+            delay(1000);
+            sr.step(meiaCasa,0,1);0
+            delay(50);
+            sr.step(pecasX[3]-posTabuleiro[ProximaX]-meiaCasa,0,0);
+            delay(50);
+            if(posTabuleiro[ProximaY] > Pecas[(numeroDeJogadas-8)/2])
+            {
+              sr.step(posTabuleiro[ProximaY] - Pecas[(numeroDeJogadas-8)/2] + meiaCasa,1,1);
+              delay(50);
+            }
+             else if(posTabuleiro[ProximaY] == Pecas[(numeroDeJogadas-8)/2])
+            {
+              sr.step(meiaCasa,1,1);
+              delay(50);
+            }
+            else if(posTabuleiro[ProximaY] < Pecas[(numeroDeJogadas-8)/2])
+            {
+              sr.step(Pecas[(numeroDeJogadas-8)/2] - posTabuleiro[ProximaY] + meiaCasa,1,1);
+              delay(50);
+            }
+            sr.step(meiaCasa,0,0);
+            delay(50);
+            digitalWrite(eletroima, LOW);
+            delay(1000);
+            sr.step(posTabuleiro[ProximaX],0,0);
+            delay(50);
+            sr.step(posTabuleiro[ProximaY],0,1);
+            delay(50);
+          }  
+        }
+    }
+
+  matriz[ProximaY][ProximaX] = 2;
+  ProximaX = -1;
+  ProximaY = -1;
+  numeroDeJogadas++;
 }
 
 void checarVitoria()
@@ -392,4 +626,3 @@ void blockFork(){
 }
 
 // Falta passos 5-8
-
